@@ -7,6 +7,8 @@ import com.udacity.asteroidradar.worker.RefreshAsteroidWork
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import timber.log.Timber.Forest.plant
 import java.util.concurrent.TimeUnit
 
 class AsteroidApplication : Application() {
@@ -15,6 +17,9 @@ class AsteroidApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        if (BuildConfig.DEBUG) {
+            plant(Timber.DebugTree())
+        }
         delayedInit()
     }
 
