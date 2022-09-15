@@ -10,6 +10,7 @@ import com.udacity.asteroidradar.database.asDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import timber.log.Timber
 import java.lang.Exception
 
 class AsteroidRepository(private val database: AsteroidsDatabase) {
@@ -31,7 +32,7 @@ class AsteroidRepository(private val database: AsteroidsDatabase) {
                 val asteroidList = parseAsteroidsJsonResult(JSONObject(resultList))
                 database.asteroidDao.insertAll(*asteroidList.asDatabaseModel())
             } catch (e: Exception) {
-                Log.i("Failure", e.message!!)
+                Timber.e(e.message!!)
 
             }
         }
